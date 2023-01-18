@@ -13,6 +13,13 @@ const INITIAL_STATE = {
   filter: '',
 };
 
+const INITIAL_CONTACTS = [
+  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+];
+
 const TITLES = {
   form: 'Phonebook',
   contacts: 'Contacts',
@@ -26,9 +33,12 @@ export class App extends Component {
     if (parsedContacts) {
       this.setState({ contacts: parsedContacts });
     }
+    else { 
+      this.setState({ contacts: INITIAL_CONTACTS });
+    }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
